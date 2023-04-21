@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+package userPackage;
+
+
+message UserRequest {
+    int32 id= 1;
+    string name= 2;
+    string username = 3;
+    string location = 4;
+    string password = 5;
+    string email = 6;
+    string phone = 7;
+}
+message UserResponse {
+    int32 id= 1;
+    string name= 2;
+    string username = 3;
+    string location = 4;
+    string password = 5;
+    string email = 6;
+    string phone = 7;
+}
+
+message UserListResponse {
+    repeated UserResponse users = 1;
+}
+
+message UserReqId {
+    string id = 1;
+}
+
+message Empty {}
+
+
+service UserServiceRoutes {
+    rpc getAllUsers (Empty) returns (UserListResponse) {}
+    rpc getUser (UserReqId) returns (UserResponse) {}
+    rpc deleteUser (UserReqId) returns (UserReqId) {}
+    rpc editUser (UserRequest) returns (UserResponse) {}
+    rpc addUser (UserRequest) returns (UserResponse) {}
+}
